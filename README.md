@@ -2,7 +2,7 @@
 
 A simple and default open telemetry log formatter
 
-## how to use
+## Quick Start
 
 * Install
 ```bash
@@ -15,6 +15,7 @@ A simple and default open telemetry log formatter
 LOGGER_NAME=your_project_name
 ```
 
+* Import in your project
 
 ```python
 from pytelemetry import get_logger
