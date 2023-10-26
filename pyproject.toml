@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "pytelemetry"
+version = "0.1.0"
+description = ""
+authors = ["Diego Saouda <diego.saouda@malga.io>" , "João Filho <joao.filho@malga.io>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
