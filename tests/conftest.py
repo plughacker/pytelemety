@@ -17,13 +17,13 @@ def trace_id():
 def expected_output_error(current_timestamp, trace_id):
     return json.dumps(
         {
-            'timestamp': current_timestamp,
-            'trace_id': trace_id,
-            'severity_text': 'ERROR',
-            'severity_number': 17,
-            'message': 'Test error message',
-            'resource': {},
-            'scope': 'test_logger',
-            'attributes': {'param1': 'value1', 'param2': 'value2'},
+            'Timestamp': current_timestamp,
+            'TraceId': trace_id,
+            'SeverityText': 'ERROR',
+            'SeverityNumber': 17,
+            'Body': 'Test error message',
+            'Resource': {},
+            'InstrumentationScope': 'test_logger',
+            'Attributes': {'param1': 'value1', 'param2': 'value2'},
         }
     )

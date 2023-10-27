@@ -28,7 +28,7 @@ logger.error('division by zero')
 
 Output
 ```json
-{"timestamp": 1698356223, "trace_id": "0d5e33c8-8010-43d0-87ee-93f856f1c860", "severity_text": "ERROR", "severity_number": 17, "message": "division by zero", "resource": {}, "scope": "your_project_name", "attributes": []}
+{"Timestamp": 1698414960, "TraceId": "a0909332-03a7-4ff5-84b1-7373793042ce", "SeverityText": "ERROR", "SeverityNumber": 17, "Body": "division by zero", "Resource": {}, "InstrumentationScope": "your_project_name", "Attributes": []}
 ```
 
 
