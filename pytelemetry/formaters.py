@@ -48,12 +48,12 @@ class PyTelemetryFormatter(logging.Formatter):
 
     def log_record_to_dict(self, record: logging.LogRecord):
         return {
-            'timestamp': int(time.time()),
-            'trace_id': self.get_trace_id(),
-            'severity_text': record.levelname,
-            'severity_number': self.LEVELS[record.levelname.lower()]['number'],
-            'message': record.getMessage(),
-            'resource': PyTelemetryContextVar.get_resource(),
-            'scope': record.name,
-            'attributes': record.args,
+            'Timestamp': int(time.time()),
+            'TraceId': self.get_trace_id(),
+            'SeverityText': record.levelname,
+            'SeverityNumber': self.LEVELS[record.levelname.lower()]['number'],
+            'Body': record.getMessage(),
+            'Resource': PyTelemetryContextVar.get_resource(),
+            'InstrumentationScope': record.name,
+            'Attributes': record.args,
         }
