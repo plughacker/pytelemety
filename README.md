@@ -6,7 +6,7 @@ A simple and default open telemetry log formatter
 
 * Install
 ```bash
-pip install git+https://github.com/joaofilho-plug/pytelemetry.git@main
+pip install git+https://github.com/joaofilho-plug/pytelemetry.git@0.0.1
 ```
 
 * Create an env var
@@ -22,7 +22,7 @@ SERVICE_ENVIRONMENT=dev | prod | None
 ```python
 from pytelemetry import create_logger
 
-logger = get_logger() # returns default python logger
+logger = create_logger('My Controller') # returns default python logger
 
 logger.error('division by zero')
 
