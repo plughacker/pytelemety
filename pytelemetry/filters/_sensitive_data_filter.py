@@ -3,7 +3,7 @@ import re
 
 
 class SensitiveDataFilter(logging.Filter):
-    def filter(self, record):
+    def filter(self, record: logging.LogRecord):
         card_number = re.search(r'number": "(\d{16})', record.msg)
         if card_number:
             card_number_masked = re.sub(

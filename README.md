@@ -12,13 +12,15 @@ pip install git+https://github.com/joaofilho-plug/pytelemetry.git@main
 * Create an env var
 
 ```
-LOGGER_NAME=your_project_name
+SERVICE_NAME=your_project_name
+SERVICE_VERSION=0.0.1
+SERVICE_ENVIRONMENT=dev | prod | None
 ```
 
 * Import in your project
 
 ```python
-from pytelemetry import get_logger
+from pytelemetry import create_logger
 
 logger = get_logger() # returns default python logger
 
@@ -28,7 +30,7 @@ logger.error('division by zero')
 
 Output
 ```json
-{"Timestamp": 1698414960, "TraceId": "a0909332-03a7-4ff5-84b1-7373793042ce", "SeverityText": "ERROR", "SeverityNumber": 17, "Body": "division by zero", "Resource": {}, "InstrumentationScope": "your_project_name", "Attributes": []}
+{"Timestamp": 1698414960, "TraceId": "a0909332-03a7-4ff5-84b1-7373793042ce", "SeverityText": "ERROR", "SeverityNumber": 17, "Body": "division by zero", "Resource": {"service_name": "service_not_named", "service_version": "0.0.1", "service_environment": null}, "InstrumentationScope": "Class or mehtod name", "Attributes": []}
 ```
 
 

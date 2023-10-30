@@ -1,10 +1,10 @@
-import os
+from decouple import config
 
 
 class LogConfig:
     """Logging configuration to be set for the server"""
 
-    LOGGER_NAME: str = os.environ.get('LOGGER_NAME', 'pytelemetry')
+    LOGGER_NAME: str = config('LOGGER_NAME', default='pytelemetry')
     LOG_FORMAT: str = '%(levelprefix)s | %(asctime)s | %(message)s'
     LOG_LEVEL: str = 'DEBUG'
 
