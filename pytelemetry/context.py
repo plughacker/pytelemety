@@ -1,9 +1,22 @@
 from contextvars import ContextVar
+from uuid import uuid4
+
+from decouple import config
 
 
 class PyTelemetryContextVar:
-    __context_trace_id = ContextVar('trace_id', default=None)
-    __resource = {}
+    __context_trace_id = ContextVar('TraceId', default=str(uuid4()))
+    __resource = {
+        'service_name': config(
+            'service_name', config('SERVICE_NAME', default='service_not_named')
+        ),
+        'service_version': config(
+            'service_version', config('SERVICE_VERSION', default='0.0.1')
+        ),
+        'service_environment': config(
+            'service_environment', config('SERVICE_ENVIRONMENT', default=None)
+        ),
+    }
 
     @staticmethod
     def set_resource(service_name, service_version, service_environment):

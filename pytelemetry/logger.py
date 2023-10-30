@@ -1,10 +1,10 @@
-import os
+from decouple import config
 
 
 class LogConfig:
     """Logging configuration to be set for the server"""
 
-    LOGGER_NAME: str = os.environ.get('LOGGER_NAME', 'pytelemetry')
+    LOGGER_NAME: str = config('LOGGER_NAME', default='pytelemetry')
     LOG_FORMAT: str = '%(levelprefix)s | %(asctime)s | %(message)s'
     LOG_LEVEL: str = 'DEBUG'
 
@@ -20,14 +20,15 @@ class LogConfig:
         }
     }
     filters = {
-        'sensitive_data_filter': {'()': 'pytelemetry.filters.SensitiveDataFilter'}
+        'args_filter': {'()': 'pytelemetry.filters.ArgsFilter'},
+        'sensitive_data_filter': {'()': 'pytelemetry.filters.SensitiveDataFilter'},
     }
     handlers = {
         'pytelemetry_handler': {
             'class': 'pytelemetry.handlers.PyTelemetryHandler',
             'formatter': 'pytelemetry_formatter',
             'stream': 'ext://sys.stdout',
-            'filters': ['sensitive_data_filter'],
+            'filters': ['args_filter', 'sensitive_data_filter'],
         }
     }
 

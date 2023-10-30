@@ -1,9 +1,9 @@
 import json
 import logging
 import time
-import uuid
 
 from pytelemetry.context import PyTelemetryContextVar
+from pytelemetry.utils.encoders import CustomEncoder
 
 
 class PyTelemetryFormatter(logging.Formatter):
@@ -35,19 +35,19 @@ class PyTelemetryFormatter(logging.Formatter):
     }
 
     def format(self, record: logging.LogRecord):
-        log_dict = self.log_record_to_dict(record)
-        return json.dumps(log_dict)
+        log: dict = self.log_record_to_dict(record)
+        try:
+            return json.dumps(log, cls=CustomEncoder)
+        except Exception:
+            log['Attributes'] = []
+            return json.dumps(log, cls=CustomEncoder)
 
     def get_trace_id(self):
-        trace_id = PyTelemetryContextVar.get_trace_id()
-
-        if trace_id is None:
-            trace_id = str(uuid.uuid4())
-            PyTelemetryContextVar.set_trace_id(trace_id)
-        return trace_id
+        return PyTelemetryContextVar.get_trace_id()
 
     def log_record_to_dict(self, record: logging.LogRecord):
         return {
+            '__unixNanoTime': int(time.time()),
             'Timestamp': int(time.time()),
             'TraceId': self.get_trace_id(),
             'SeverityText': record.levelname,
