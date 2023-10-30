@@ -20,15 +20,14 @@ class LogConfig:
         }
     }
     filters = {
-        'args_filter': {'()': 'pytelemetry.filters.ArgsFilter'},
-        'sensitive_data_filter': {'()': 'pytelemetry.filters.SensitiveDataFilter'},
+        'sensitive_data_filter': {'()': 'pytelemetry.filters.SensitiveDataFilter'}
     }
     handlers = {
         'pytelemetry_handler': {
             'class': 'pytelemetry.handlers.PyTelemetryHandler',
             'formatter': 'pytelemetry_formatter',
             'stream': 'ext://sys.stdout',
-            'filters': ['args_filter', 'sensitive_data_filter'],
+            'filters': ['sensitive_data_filter'],
         }
     }
 
