@@ -5,6 +5,7 @@ class LogConfig:
     """Logging configuration to be set for the server"""
 
     LOGGER_NAME: str = config('LOGGER_NAME', default='pytelemetry')
+    SAVE_TO_FILE: bool = config('LOGGER_SAVE_TO_FILE', default=False, cast=bool)
     LOG_FORMAT: str = '%(levelprefix)s | %(asctime)s | %(message)s'
     LOG_LEVEL: str = 'DEBUG'
 
@@ -40,6 +41,12 @@ class LogConfig:
     @property
     def FILE_LOGGER_NAME(self):
         return f'{self.LOGGER_NAME}_file'
+
+    def is_logger_to_file(self) -> bool:
+        return self.SAVE_TO_FILE
+
+    def get_logger_name(self) -> str:
+        return self.FILE_LOGGER_NAME if self.is_logger_to_file() else self.LOGGER_NAME
 
     def dict(self):
         return {

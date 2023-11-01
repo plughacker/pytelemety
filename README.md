@@ -15,6 +15,7 @@ pip install git+https://github.com/plughacker/pytelemety.git@v0.0.1
 SERVICE_NAME=your_project_name
 SERVICE_VERSION=0.0.1
 SERVICE_ENVIRONMENT=dev | prod | None
+LOGGER_SAVE_TO_FILE=True | False # When True salve logs in app.log file
 ```
 
 * Import in your project
