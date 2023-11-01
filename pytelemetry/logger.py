@@ -28,7 +28,13 @@ class LogConfig:
             'formatter': 'pytelemetry_formatter',
             'stream': 'ext://sys.stdout',
             'filters': ['sensitive_data_filter'],
-        }
+        },
+        'pytelemetry_file_handler': {
+            'class': 'pytelemetry.handlers.PyTelemetryFileWriteHandler',
+            'formatter': 'pytelemetry_formatter',
+            'stream': 'ext://sys.stdout',
+            'filters': ['sensitive_data_filter'],
+        },
     }
 
     def dict(self):
@@ -46,6 +52,11 @@ class LogConfig:
                     'handlers': ['pytelemetry_handler'],
                     'level': self.LOG_LEVEL,
                     'propagate': False,
-                }
+                },
+                'file': {
+                    'handlers': ['pytelemetry_file_handler'],
+                    'level': self.LOG_LEVEL,
+                    'propagate': False,
+                },
             },
         }

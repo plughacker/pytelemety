@@ -5,7 +5,7 @@ from decouple import config
 
 
 class PyTelemetryContextVar:
-    __context_trace_id = ContextVar('TraceId', default=str(uuid4()))
+    __context_trace_id = ContextVar('TraceId', default=None)
     __resource = {
         'service_name': config(
             'service_name', config('SERVICE_NAME', default='service_not_named')
@@ -33,5 +33,13 @@ class PyTelemetryContextVar:
         PyTelemetryContextVar.__context_trace_id.set(trace_id)
 
     @staticmethod
+    def new_trace_id():
+        trace_id: str = str(uuid4())
+        PyTelemetryContextVar.set_trace_id(trace_id)
+        return trace_id
+
+    @staticmethod
     def get_trace_id():
-        return PyTelemetryContextVar.__context_trace_id.get()
+        if trace_id := PyTelemetryContextVar.__context_trace_id.get():
+            return trace_id
+        return PyTelemetryContextVar.new_trace_id()
