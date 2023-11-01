@@ -27,7 +27,7 @@ def create_logger(
         >>> logger = create_logger('meu_contexto')
         >>> logger.error('Mensagem de informação', {'key': value})
 
-        >>> logger_file = create_logger('meu_contexto', 'file')  # Salva os logs no arquivo app.log'.
+        >>> logger_file = create_logger('meu_contexto', True)  # Salva os logs no arquivo app.log'.
         >>> logger_file.info('Mensagem de informação para o logger de arquivo')
 
     """

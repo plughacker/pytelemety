@@ -6,7 +6,7 @@ A simple and default open telemetry log formatter
 
 * Install
 ```bash
-pip install git+https://github.com/joaofilho-plug/pytelemetry.git@0.0.1
+pip install git+https://github.com/plughacker/pytelemety.git@v0.0.1
 ```
 
 * Create an env var
