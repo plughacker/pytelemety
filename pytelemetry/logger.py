@@ -37,6 +37,10 @@ class LogConfig:
         },
     }
 
+    @property
+    def FILE_LOGGER_NAME(self):
+        return f'{self.LOGGER_NAME}_file'
+
     def dict(self):
         return {
             'LOGGER_NAME': self.LOGGER_NAME,
@@ -53,7 +57,7 @@ class LogConfig:
                     'level': self.LOG_LEVEL,
                     'propagate': False,
                 },
-                'file': {
+                self.FILE_LOGGER_NAME: {
                     'handlers': ['pytelemetry_file_handler'],
                     'level': self.LOG_LEVEL,
                     'propagate': False,
