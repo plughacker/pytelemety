@@ -7,7 +7,7 @@ class LogConfig:
     LOGGER_NAME: str = config('LOGGER_NAME', default='pytelemetry')
     SAVE_TO_FILE: bool = config('LOGGER_SAVE_TO_FILE', default=False, cast=bool)
     LOG_FORMAT: str = '%(levelprefix)s | %(asctime)s | %(message)s'
-    LOG_LEVEL: str = 'DEBUG'
+    LOG_LEVEL: str = config('LOGGER_LEVEL', default='DEBUG')
 
     # Logging config
     version = 1

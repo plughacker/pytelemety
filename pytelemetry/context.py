@@ -8,13 +8,11 @@ class PyTelemetryContextVar:
     __context_trace_id = ContextVar('TraceId', default=None)
     __resource = {
         'service_name': config(
-            'service_name', config('SERVICE_NAME', default='service_not_named')
+            'NEW_RELIC_APP_NAME', config('SERVICE_NAME', default='service_not_named')
         ),
-        'service_version': config(
-            'service_version', config('SERVICE_VERSION', default='0.0.1')
-        ),
+        'service_version': config('SERVICE_VERSION', default='0.0.1'),
         'service_environment': config(
-            'service_environment', config('SERVICE_ENVIRONMENT', default=None)
+            'NEW_RELIC_ENVIRONMENT', config('SERVICE_ENVIRONMENT', default=None)
         ),
     }
 

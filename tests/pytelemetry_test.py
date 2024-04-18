@@ -13,9 +13,9 @@ from pytelemetry.context import PyTelemetryContextVar
 def test_pytelemetry_logger(level: str, save_to_file: bool):
     if os.path.exists('app.log'):
         os.remove('app.log')
-    with patch('pytelemetry.logger.LogConfig.is_logger_to_file') as mock:
-        mock.return_value = save_to_file
-
+    with patch(
+        'pytelemetry.logger.LogConfig.is_logger_to_file', return_value=save_to_file
+    ), patch('pytelemetry.logger.LogConfig.LOG_LEVEL', return_value='DEBUG'):
         logger = create_logger('Pytest')
         try:
             getattr(logger, level)(f'Message by {level}')
